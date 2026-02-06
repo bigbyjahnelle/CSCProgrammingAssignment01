@@ -30,6 +30,16 @@ public class SoftwareTicket extends Ticket {
     @Override
     public int urgencyScore() {
         // TODO #3
-        return -1;
+        int score = getPriority() * 10 + getDaysOpen ();
+         if (securityIssue){
+             score += 25;
+         }
+         if (affectsLogin){
+             score +=15;
+         }
+         if ("VPN".equalsIgnoreCase(system)){
+             score += 8;
+         }
+         return score;
     }
 }
